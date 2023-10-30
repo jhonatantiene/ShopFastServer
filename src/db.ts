@@ -11,7 +11,7 @@ class db {
         connectionLimit: 10
     });
 
-    static consult(query: string) {
+    static consult(query: string, param: any[] = []) {
         return new Promise((resolve, reject) => {
             this.pool.getConnection((err, connection) => {
                 if (err) {
@@ -20,7 +20,7 @@ class db {
                     return
                 }
 
-                connection.query(query, (queryErr, result) => {
+                connection.query(query, param, (queryErr, result) => {
                     connection.release()
                     if (queryErr) {
                         console.error(queryErr)
