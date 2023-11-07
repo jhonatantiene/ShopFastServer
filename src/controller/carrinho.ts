@@ -17,9 +17,9 @@ export class carrinho {
 
 
     static async carrinhoUpdate(param: any) {
-        let carrinho: any = await this.carrinhoRead(param.user)
+        let carrinho: any = await this.carrinhoRead('param.user')
         let resultRead: any = 0
-        carrinho.forEach((v: any) => { resultRead = v.qtd + param.qtd })
+    carrinho.forEach((v: any) => { resultRead = v.qtd + 1/*param.qtd*/ })
         console.log(resultRead)
         return await serviceDb.simplifiedQuery('UPDATE carrinho SET qtd = ?', [resultRead])
     }
