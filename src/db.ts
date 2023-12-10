@@ -4,7 +4,7 @@ dotenv.config();
 
 class db {
     static pool: Pool = mysql2.createPool({
-        host: process.env.DBHOST,
+        host: process.env.DBHOST, 
         user: process.env.DBUSER,
         password: process.env.DBPASSWORD,
         database: process.env.DBNAME,
@@ -15,7 +15,6 @@ class db {
         return new Promise((resolve, reject) => {
             this.pool.getConnection((err, connection) => {
                 if (err) {
-                    console.error(err)
                     reject(err)
                     return
                 }
@@ -23,7 +22,7 @@ class db {
                 connection.query(query, param, (queryErr, result) => {
                     connection.release()
                     if (queryErr) {
-                        console.error(queryErr)
+                        console.error('Possivel erro na query!!')
                         reject(queryErr)
                     } else {
                         resolve(result)

@@ -1,18 +1,14 @@
 import serviceDb from '../services/servicesDb';
+import usuarios from './usuarios';
 
 export class carrinho {
 
     static async carrinhoRead(param: any): Promise<any> {
-        return await serviceDb.simplifiedQuery('select * from carrinho WHERE idCliente = ?', [param.user])
+        return await serviceDb.simplifiedQuery('select * from carrinho')
     }
 
-    static async carrinhoCreate(param: any) {
-        if ('idCliente == clienteAtual') {
-            if ('idproduto == produtoAtual') {
-                return this.carrinhoUpdate(param)
-            }
-        }
-        return await serviceDb.simplifiedQuery('INSERT INTO carrinho (idcarrinho, idProduto, idCliente, qtd, data) VALUES (?, ?, ?, ?, ?)', [2, 2, 2, 4, '20231025'])
+    static async carrinhoCreate(param: any[]) {
+        return await serviceDb.simplifiedQuery('INSERT INTO carrinho (idProduto, idCliente, qtd, data) VALUES (?, ?, ?, ?)', [])
     }
 
     static async carrinhoUpdate(param: any) {
